@@ -1,0 +1,29 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% include 'authentication/messages.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="widthdevice-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>   
+    {% csrf_token %}
+    <h3>Successfully Sign In  </h3>
+
+    {% if user.is_authenticated %}
+    <p>Welcome, You are logged in as {{ user.username }}</p><br><br>
+    <button type="submit"><a href="/signout">Signout</a></button>
+    {% else %}
+    <a href="{% provider_login_url 'google' %}">Login With Google</a>
+    {% endif %}
+
+</body>
+</html>
